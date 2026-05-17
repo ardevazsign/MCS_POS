@@ -3,13 +3,13 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Login Admin </title>
-    <link rel="stylesheet" href="/css/login.css" />
+    <title>Login Admin</title>
+    <link rel="stylesheet" href="css/login.css" />
   </head>
   <body>
     <header class="main-header">
       <nav class="nav-menu">
-        <span class="logo" ><a href="#">✳️ ArdevazSign ❇️</a></span>
+        <span class="logo"><a href="#">✳️ ArdevazSign ❇️</a></span>
         <!-- <ul class="head-list-holder">
           <li class="headList"><a href="index.html">🏠</a></li>
           <li class="headList"><a href="salesHistory.html">📜</a></li>
@@ -27,52 +27,49 @@
     </header>
     <div class="main-container">
       <!-- Login Page -->
-       <div id="loginPage" class="container">
-         <h2>POS Login</h2>
-        <input type="text" id="loginUser" placeholder="Username">
-        <input type="password" id="loginPass" placeholder="Password">
+      <div id="loginPage" class="container">
+        <h2>POS Login</h2>
+        <input type="text" id="loginUser" placeholder="Username" />
+        <input type="password" id="loginPass" placeholder="Password" />
         <button onclick="login()">Login</button>
-        <button class="admin-btn" onclick="showAdminLogin()">Admin Panel</button>
+        <button class="admin-btn" onclick="showAdminLogin()">
+          Admin Panel
+        </button>
         <div id="loginMsg"></div>
-       </div>
+      </div>
 
-       <!-- Admin Login Page -->
-        <div id="adminLoginPage" class="container hidden">
-          <h2>Admin Login</h2>
-          <input type="text" id="adminUser" placeholder="Admin Username">
-          <input type="password" id="adminPass" placeholder="Admin Password"> 
-          <button onclick="adminLogin()">Login as Admin</button>
-          <button onclick="showLogin()">Back to POS Login</button>
-          <div id="adminLoginMsg"></div>
-        </div>
+      <!-- Admin Login Page -->
+      <div id="adminLoginPage" class="container hidden">
+        <h2>Admin Login</h2>
+        <input type="text" id="adminUser" placeholder="Admin Username" />
+        <input type="password" id="adminPass" placeholder="Admin Password" />
+        <button onclick="adminLogin()">Login as Admin</button>
+        <button onclick="showLogin()">Back to POS Login</button>
+        <div id="adminLoginMsg"></div>
+      </div>
 
-        <!-- Admin Panel -->
-         <div id='adminPanel' class="container hidden">
-          <h2>Admin Panel</h2>
-          <h3>Register POS User</h3>
-          <input type="text " id="newUser" placeholder="New Username">
-          <input type="password" id="newPass" placeholder="New Password">
-          <button onclick="registerUser()">Add User</button>
-          <div id="registerMsg"></div>
+      <!-- Admin Panel -->
+      <div id="adminPanel" class="container hidden">
+        <h2>Admin Panel</h2>
+        <h3>Register POS User</h3>
+        <input type="text " id="newUser" placeholder="New Username" />
+        <input type="password" id="newPass" placeholder="New Password" />
+        <button onclick="registerUser()">Add User</button>
+        <div id="registerMsg"></div>
 
-          <h3>Registered Users</h3>
-          <div id="userList"></div>
+        <h3>Registered Users</h3>
+        <div id="userList"></div>
 
-          <button class="logout-btn" onclick="adminLogout()">Logout Admin</button>
-         </div>
+        <button class="logout-btn" onclick="adminLogout()">Logout Admin</button>
+      </div>
 
-         <!-- POS Dashboard -->
-         <div id="posPage" class="container hidden">
-            <h2>
-              POS Dashboard
-            </h2>
-            <p> Welcome, <span id="currentUser">
-              
-            </span> !</p>
-            <p>to our POS System</p>
-            <button class="logout-btn " onclick="logout()">Logout</button>
-         </div>   
-
+      <!-- POS Dashboard -->
+      <div id="posPage" class="container hidden">
+        <h2>POS Dashboard</h2>
+        <p>Welcome, <span id="currentUser"> </span> !</p>
+        <p>to our POS System</p>
+        <button class="logout-btn" onclick="logout()">Logout</button>
+      </div>
     </div>
     <footer>
       <!-- <span class="footer-logo">
