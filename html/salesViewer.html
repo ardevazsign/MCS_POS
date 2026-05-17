@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Daily Sales Viewer</title>
+    <link rel="stylesheet" href="../css/style.css" />
+    <style>
+      body {
+        font-family: Arial;
+      }
+      .viewerSection {
+        margin-top: 30px;
+        padding: 10px;
+      }
+      .viewerTitle {
+        border: 2px solid white;
+        background-color: #524747;
+        color: white;
+        text-align: center;
+        margin-bottom: 4px;
+        padding: 10px 0;
+        box-shadow: 4px 4px 6px rgba(0, 0, 0, 0.5);
+      }
+      .dailyTransList {
+        border: 2px solid whitesmoke;
+        padding: 20px;
+        display: flex;
+        align-items: center;
+        column-gap: 100px;
+        justify-content: center;
+        background-color: rgb(209, 216, 196);
+        box-shadow: 4px 4px 6px rgba(0, 0, 0, 0.5);
+      }
+      .dailyList {
+        background-color: rgb(209, 192, 255);
+      }
+      .transBox {
+        border: 1px solid white;
+        padding: 20px;
+        background-color: rgb(181, 192, 170);
+        box-shadow: 4px 4px 6px rgba(0, 0, 0, 0.5);
+      }
+      .transDate {
+        border-radius: 2px;
+        font-weight: 600;
+        text-align: center;
+        width: 150px;
+        background-color: rgb(251, 252, 251);
+        padding: 4px;
+        box-shadow: 4px 4px 6px rgba(0, 0, 0, 0.5);
+      }
+      .amountTotal {
+        border-radius: 2px;
+        text-align: center;
+        width: 150px;
+        background-color: #333;
+        color: white;
+        padding: 4px;
+        box-shadow: 4px 4px 6px rgba(0, 0, 0, 0.5);
+      }
+
+      .day-item {
+        width: 340px;
+        display: flex;
+        column-gap: 20px;
+        padding: 10px;
+        border: 1px solid #ddd;
+        margin-bottom: 10px;
+        cursor: pointer;
+        box-shadow: 4px 4px 6px rgba(0, 0, 0, 0.5);
+        border: 1px solid whitesmoke;
+      }
+
+      .day-item:hover {
+        background: #f2f2f2;
+      }
+
+      .transaction-box {
+        margin-top: 20px;
+        margin-bottom: 20px;
+        padding: 10px;
+        border: 1px solid #333;
+      }
+
+      .hidden {
+        display: none;
+      }
+      .transaction {
+        padding: 5px;
+        border-bottom: 1px solid #eee;
+      }
+    </style>
+  </head>
+  <body>
+    <header class="main-header">
+      <nav class="nav-menu">
+        <span class="logo"><a href="#">✳️ ArdevazSign ❇️</a></span>
+        <ul class="head-list-holder">
+          <li class="headList"><a href="../index.html">🏠</a></li>
+          <li class="headList"><a href="salesHistory.html">📜</a></li>
+          <li class="headList"><a href="salesList.html">📒</a></li>
+          <li class="headList"><a href="#">📚</a></li>
+        </ul>
+        <ul class="head-list-holder">
+          <!-- <li class="headList">⚙️</li> -->
+          <li class="headList"><a href="../login.html">👤</a></li>
+          <li class="headList"><a href="cashTracker.html">💴</a></li>
+          <!-- <li class="headList">🗓️</li> -->
+          <li class="headList"><a href="notes.html">🗂️📒</a></li>
+        </ul>
+      </nav>
+    </header>
+    <section class="viewerSection">
+      <h2 class="viewerTitle">Daily Sales</h2>
+      <div class="dailyTransList">
+        <div class="dailyList" id="dailyList"></div>
+        <div class="transBox">
+          <h3>Selected Date Transactions</h3>
+          <div id="transactionList" class="transaction-box hidden"></div>
+        </div>
+      </div>
+    </section>
+    <footer>
+      <span class="footer-logo">
+        <a href="#">ArdevazSign'2026 </a>
+      </span>
+      <ul class="footer-menu">
+        <!-- <li><a href="#">💶</a></li>
+        <li><a href="#">📱</a></li> -->
+      </ul>
+      <p>
+        &copy; <span id="copyYear"> </span> ArdevazSign. All rights reserved.
+      </p>
+      <ul>
+        <!-- <li>📆</li>
+        <li>👤</li>
+        <li>♻️</li> -->
+      </ul>
+    </footer>
+    <script>
+      document.getElementById('copyYear').textContent =
+        new Date().getFullYear();
+    </script>
+    <script src="../components/mainViewer.js"></script>
+  </body>
+</html>

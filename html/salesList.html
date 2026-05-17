@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Daily Sales Summary</title>
+    <link rel="stylesheet" href="../css/style.css" />
+  </head>
+  <body>
+    <header class="main-header">
+      <nav class="nav-menu">
+        <span class="logo"><a href="#">✳️ ArdevazSign ❇️</a></span>
+        <ul class="head-list-holder">
+          <li class="headList"><a href="../index.html">🏠</a></li>
+          <li class="headList"><a href="salesHistory.html">📜</a></li>
+          <li class="headList"><a href="#">📒</a></li>
+          <li class="headList"><a href="salesViewer.html">📚</a></li>
+        </ul>
+        <ul class="head-list-holder">
+          <!-- <li class="headList">⚙️</li> -->
+          <li class="headList"><a href="../login.html">👤</a></li>
+          <li class="headList"><a href="cashTracker.html">💴</a></li>
+          <!-- <li class="headList">🗓️</li> -->
+          <li class="headList"><a href="notes.html">🗂️📒</a></li>
+        </ul>
+      </nav>
+    </header>
+    <!-- Sales History Section -->
+    <section class="dailyListHistory">
+      <div class="history-holder">
+        <div class="title-holder">
+          <h2 class="history-title2">Daily Sales Summary</h2>
+          <!-- <div class="grandTotal" id="grandTotal">Grand Total : </div> -->
+        </div>
+
+        <div class="history-list" id="dailyList"></div>
+      </div>
+    </section>
+
+    <footer>
+      <span class="footer-logo">
+        <a href="#">ArdevazSign'2026 </a>
+      </span>
+      <ul class="footer-menu">
+        <!-- <li><a href="#">💶</a></li>
+        <li><a href="#">📱</a></li> -->
+      </ul>
+      <p>
+        &copy; <span id="copyYear"> </span> ArdevazSign. All rights reserved.
+      </p>
+      <ul>
+        <!-- <li>📆</li>
+        <li>👤</li>
+        <li>♻️</li> -->
+      </ul>
+    </footer>
+    <script>
+      document.getElementById('copyYear').textContent =
+        new Date().getFullYear();
+    </script>
+    <script src="../components/scriptOne.js"></script>
+  </body>
+</html>

@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🆕MCS POS</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <style>
+     .calendar{
+            width: 350px;
+            /* height: 350px; */
+            margin: 0 auto;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+            overflow: hidden;
+        }
+        .header{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #007bff;
+           color: white;
+           padding: 15px;
+        }
+        .header button {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 20px;
+            cursor: pointer;
+            padding:  5px 10px;
+        }
+        .header button:hover{
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 5px;
+        }
+        .weekdays, .days{
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            text-align: center;
+        }
+        .weekdays{
+            background: #f0f0f0;
+            padding: 10px 0;
+            font-weight: 600;
+            font-size: 14px;
+        }
+        .days {
+            padding: 10px;
+            gap: 5px;
+        }
+        .days div{
+            padding: 10px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        .days div:hover{
+            background: #e3f2fd;
+        }
+        .days .today {
+            background: #007bff;
+            color: white;
+        }
+        .days .other-month{
+            color: #ccc;
+        }
+        .days .selected{
+            background: #28a745;
+            color: white;
+        }
+        .sun{
+            background: red;
+            color: white;
+        }
+        .sat{
+            background: blue;
+            color: white;
+        }
+        .calendarContainer{
+            display: none;
+          padding: 10px;
+          background-color: #28a745;
+          position: absolute;
+          top:40px;
+          right: 20px;
+          border-radius: 4px;
+        }
+        .closeCalendar{
+          margin: 10px;
+          text-align: center;
+          float: right;
+          width: 25px;
+          height: 25px;
+          border-radius: 50%;
+          font-size: 25px;
+          color: white;
+          padding: 2px;
+          background: darkolivegreen;
+          margin-bottom: 10px;
+          cursor: pointer;
+        }
+        .closeCalendar:hover{
+          background: white;
+          color: red;
+        }
+    </style>
+</head>
+<body>
+    <header class="main-header">
+        <nav class="nav-menu">
+            <span class="logo" ><a href="#">✳️ ArdevazSign ❇️</a></span>
+            <ul class="head-list-holder">
+                <li class="headList"><a href="#"></a>🏠</li>
+                <li class="headList"><a href="./html/salesHistory.html">📜</a></li>
+                <li class="headList"><a href="./html/salesList.html">📒</a></li>
+                <li class="headList"><a href="./html/salesViewer.html">📚</a></li>
+            </ul>
+            <ul class="head-list-holder">
+                <li class="headList"><button onclick="showModal()">⚙️</button></li>
+                <li class="headList"> <a href="./login.html">👤</a> </li>
+                <li class="headList">
+                    <a href="./html/cashTracker.html">💴</a>
+               </li>
+                <li class="headList"><button onclick="openCalendar()">📆</button></li>
+                <li class="headList"><a href="./html/notes.html">🗂️📒</a></li>
+            </ul>
+        </nav>
+    </header>
+    <!-- Main Holder -->
+    <section class="section-one">
+        <!-- Display Holder Start Here -->
+        <div class="firstRowDisplay">
+            <!-- Display 1 -->
+             <div class="holder-input" id="display1">
+               <div class="main-input total-amount" id="totalDisplay" >Total Amount : </div>
+             </div>
+             <!-- Display 2 -->
+             <div id="display2">
+               <div class="main-input savedDisplay"  id="savedDisplay" ></div>
+             </div>
+             <!-- Display 3 -->
+             <div class="display" id="display3">
+             <div id="clock" class="main-input total-amount" >
+                <div  id="time">00:00:00 AM</div>
+                <div  id="date">MM/DD/YYYY</div>
+             </div>
+             </div>
+             <!-- ---------- -->
+        </div>
+        <div class="secondRow">
+            <!-- Display 4 -->
+          <div class="display" id="display4">
+             <input class="main-input" value="0.00" type="text" id="mainDisplay" readonly>
+          </div>
+          <!-- Display 5 -->
+           <div class="display" id="display5">
+             <input class="main-input" type="text" id="calculatorInput" readonly>
+           </div>
+           <!-- Display 6 -->
+            <div class="display" id="display6">
+             <input class="main-input" type="text" id="monitorInput"   readonly>
+          </div>
+            <!-- --------- -->
+        </div>
+        <!-- Display Holder End Here -->
+         <!-- Product Holder -->
+        <div class="product-holder">
+         <!-- 1 -->
+        <div>
+             <button class="product" onclick="addNumber(1)">1</button>
+        </div>
+        <!-- 2 -->
+        <div>
+           
+              <button class="product" onclick="addNumber(2)">2</button>
+        </div>
+        <!-- 3 -->
+        <div>
+               <button class="product" onclick="addNumber(3)">3</button>
+        </div>
+        <!-- 4 -->
+        <div>
+              <button class="product" onclick="addNumber(4)">4</button>
+        </div>
+        <!-- 5 -->
+        <div>
+              <button class="product" onclick="addNumber(5)">5</button>
+        </div>
+        <!-- 6 -->
+        <div>
+              <button class="product" onclick="addNumber(6)">6</button>
+        </div>
+        <!-- 7 -->
+        <div>
+              <button class="product" onclick="addNumber(7)">7</button>
+        </div>
+        <!-- File -->
+        <div>
+           
+              <button class="product"  onclick="removeLast()" >🔙</button>
+        </div>
+        <!-- List -->
+        <div>
+              <button class="productCal" id="switchBtn" onclick="switchInput()">🔁</button>
+        </div>
+        <!-- Clear -->
+        <div>
+               <button class="productCal" onclick="clearActive()">©️</button>
+        </div>
+        <!-- 7 deleteLast() -->
+        <div>
+               <button class="productCal" onclick="deleteToLeft() ">🔙</button>
+        </div>
+        <!-- + -->
+        <div>
+              <button class="productCal" onclick=" typeNumber('+')">➕</button>
+        </div>
+        <!-- 2nd Line -->
+         <!-- 10 -->
+        <div>
+                <button class="product" onclick="addNumber(10)">10</button>
+        </div>
+        <!-- 20 -->
+        <div>
+               <button class="product" onclick="addNumber(20)">20</button>
+        </div>
+        <!-- 30 -->
+        <div>
+                <button class="product" onclick="addNumber(30)">30</button>
+        </div>
+        <!-- 100 -->
+        <div>
+                <button class="product" onclick="addNumber(100)">100</button>
+        </div>
+        <!-- 200 -->
+        <div>
+                 <button class="product" onclick="addNumber(200)">200</button>
+        </div>
+        <!-- 300 -->
+        <div>
+               <button class="product" onclick="addNumber(300)">300</button>
+        </div>
+        <!-- 8 -->
+        <div>
+                 <button class="product" onclick="addNumber(8)">8</button>
+        </div>
+        <!-- Vacant -->
+        <div>
+                 <button class="product" ><a class="historyIcon" href="salesHistory.html">🔠</a></button>
+        </div>
+        <!-- 7 -->
+        <div>
+               <button class="productCal" onclick="typeNumber('7')">7</button>
+        </div>
+        <!-- 8 -->
+        <div>
+                <button class="productCal" onclick="typeNumber('8')">8</button>
+        </div>
+        <!-- 9 -->
+        <div>
+                 <button class="productCal" onclick="typeNumber('9')">9</button>
+        </div>
+        <!-- - -->
+        <div>
+                 <button class="productCal" onclick=" typeNumber('-')">➖</button>
+        </div>
+        <!-- 3rd Line -->
+        <div>
+               <button class="product" onclick="addNumber(40)">40</button>
+        </div>
+        <div>
+              <button class="product" onclick="addNumber(50)">50</button>
+        </div>
+        <div>
+               <button class="product" onclick="addNumber(60)">60</button>
+        </div>
+        <div>
+                <button class="product" onclick="addNumber(400)">400</button>
+        </div>
+        <div>
+                <button class="product" onclick="addNumber(500)">500</button>
+        </div>
+        <div>
+               <button class="product" onclick="addNumber(600)">600</button>
+        </div>
+        <div>
+                <button class="product" onclick="addNumber(9)">9</button>
+        </div>
+        <div>
+                 <button class="productCal"  onclick=" typeNumber('.')"> •</button>
+        </div>
+        <div>
+               <button class="productCal" onclick="typeNumber('4')">4</button>
+        </div>
+        <div>
+               <button class="productCal" onclick="typeNumber('5')">5</button>
+        </div>
+        <div>
+                <button class="productCal" onclick="typeNumber('6')">6</button>
+        </div>
+        <div>
+                <button class="productCal" onclick="typeNumber('*')">✖️</button>
+        </div>
+        <!-- Last line -->
+        <div>
+               <button class="product" onclick="addNumber(70)">70</button>
+        </div>
+        <div>
+               <button class="product" onclick="addNumber(80)">80</button>
+        </div>
+        <div>
+             <button class="product" onclick="addNumber(90)">90</button>
+        </div>
+        <div>
+               <button class="product" onclick="addNumber(700)">700</button>
+        </div>
+        <div>
+                <button class="product" onclick="addNumber(800)">800</button>
+        </div>
+        <div>
+               <button class="product" onclick="addNumber(900)">900</button>
+        </div>
+        <div>
+                <button class="product" onclick="appendToMain('0')">0</button>
+        </div>
+        <div>
+              <button class="productCal" type="button" onclick=" typeNumber('0')">0</button>
+        </div>
+        <div>
+            <button class="productCal" type="button"  onclick="typeNumber('1')">1</button>
+        </div>
+        <div>
+            <button class="productCal" type="button"  onclick="typeNumber('2')">2</button>
+        </div>
+        <div>
+            <button class="productCal" type="button"  onclick="typeNumber('3')" >3</button>
+        </div>
+        <div>
+                <button class="productCal" type="button" onclick=" typeNumber('/')">➗</button>
+        </div>
+        <!-- marked as 101 Holder -->
+        </div>
+        <!-- end pannels -->
+        <div class="bottomBtn">
+             <button class="main-input onethao" type="button" onclick="addNumber(1000)">1000</button>
+             <button class="saveBtn" onclick="saveValue()">SAVE</button>
+             <button class="main-input onethao" type="button"  onclick="calculateCalculator()">🟰</button>
+        </div>
+        
+</div>
+<!-- Product Holder End Tag -->
+     
+    </section>
+    <!-- Main  -->
+    <footer>
+        <span class="footer-logo">
+            <a href="#">ArdevazSign'2026 </a>
+        </span>
+        <ul class="footer-menu">
+            <li><a href="#">💶</a></li>
+            <li><a href="#">📱</a></li>
+        </ul>
+        <p> &copy; <span id="copyYear" > </span> ArdevazSign. All rights reserved. </p>
+        <ul>
+            <li><button onclick="openCalendar()">📆</button></li>
+            <li>👤</li>
+            <li>♻️</li>
+        </ul>
+
+    </footer>
+    <!-- Modal Settings -->
+     <div class="setting-container" id="myModal">
+        <div class="setting-content">
+           
+            <span class="close" onclick="hideModal()">&times;</span>
+
+        <h3 class="switchTitle" >Settings</h3>
+      <div class="setting-holder">
+        <!-- Display 1 -->
+        <span class="labelSwitch">Display 1</span>
+       <label class="switch">
+        <input class="inputSwitch" type="checkbox" onchange="toggleTheme('totalDisplay')">
+        <span class="slider"></span>
+       </label>
+       <!-- Display 2 -->
+        <span class="labelSwitch">Display 2</span>
+       <label class="switch">
+        <input class="inputSwitch" type="checkbox" onchange="toggleTheme('savedDisplay')">
+        <span class="slider"></span>
+       </label>
+       <!-- Display 3 -->
+        <span class="labelSwitch">Displayn 3</span>
+       <label class="switch">
+        <input class="inputSwitch" type="checkbox" onchange="toggleTheme('clock')">
+        <span class="slider"></span>
+       </label>
+       <!-- Display 4 -->
+        <span class="labelSwitch">Display 4</span>
+       <label class="switch">
+        <input class="inputSwitch" type="checkbox" onchange="toggleTheme('mainDisplay')">
+        <span class="slider"></span>
+       </label>
+       <!-- Display 5 -->
+       <span class="labelSwitch">Display 5</span>
+       <label class="switch">
+        <input class="inputSwitch" type="checkbox" onchange="toggleTheme('calculatorInput')">
+        <span class="slider"></span>
+       </label>
+       <!-- Display 6 -->
+        <span class="labelSwitch">Display 6</span>
+       <label class="switch">
+        <input class="inputSwitch" type="checkbox" onchange="toggleTheme('monitorInput')">
+        <span class="slider"></span>
+       </label>
+       </div>
+        </div>
+     </div>
+
+     <!-- --- --- --- Calendar --- --- --- --- -->
+        <div class="calendarContainer" id="calendarModal">
+            <span class="closeCalendar" onclick="hideCalendar()">&times;</span>
+    <div class="calendar">
+        <div class="header">
+            <button id="prevBtn">&lt;</button>
+            <h3 id="monthYear"></h3>
+            <button id="nextBtn">&gt;</button>
+        </div>
+
+        <div class="weekdays">
+            <div class="sun">Sun</div>
+            <div>Mon</div>
+            <div>Tue</div>
+            <div>Wed</div>
+            <div>Thu</div>
+            <div>Fri</div>
+            <div class="sat">Sat</div>
+        </div>
+
+             <div class="days" id="days"></div>
+    </div>
+    </div>
+   <!-- ----- --- Calendar end here --- -----  -->
+    <script>
+        // Modal Hide & Show
+        const calendarModal = document.getElementById('calendarModal');
+        const modal = document.getElementById('myModal');
+
+        // Show modal
+        function showModal() {
+            modal.style.display = 'block';
+        }
+        function openCalendar(){
+          calendarModal.style.display = 'block';
+        }
+        // Hide Modal
+        function hideModal() {
+            modal.style.display = 'none';
+        }
+        function hideCalendar() {
+          calendarModal.style.display = 'none';
+        }
+        // close when click outside modal
+        window.onclick = function(event) {
+            if (event.target === modal) {
+                hideModal();
+            }
+        }
+        window.onclick = function(e) {
+            if (e.target === calendarModal) {
+                hideCalendar();
+            }
+        }
+        // close when ESC
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                hideModal();
+            }
+        });
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                hideCalendar();
+            }
+        });
+        // ----------------------------- for settings ---------
+
+
+const allIds = [
+  "totalDisplay",
+  "savedDisplay",
+  "clock",
+  "mainDisplay",
+  "calculatorInput",
+  "monitorInput"
+];
+
+// Toggle Theme
+function toggleTheme(idName) {
+  const display = document.getElementById(idName);
+
+  // toggle dark class
+  display.classList.toggle("dark");
+
+  // save theme
+  const theme = display.classList.contains("dark")
+    ? "dark"
+    : "light";
+
+  localStorage.setItem(idName + "Theme", theme);
+}
+
+// Load Saved Themes
+function loadThemes() {
+  allIds.forEach(id => {
+    const display = document.getElementById(id);
+
+    if (!display) return;
+
+    const savedTheme = localStorage.getItem(id + "Theme");
+
+    // checkbox
+    const checkbox = document.querySelector(
+      `input[onchange="toggleTheme('${id}')"]`
+    );
+
+    if (savedTheme === "dark") {
+      display.classList.add("dark");
+
+      if (checkbox) {
+        checkbox.checked = true;
+      }
+    } else {
+      display.classList.remove("dark");
+
+      if (checkbox) {
+        checkbox.checked = false;
+      }
+    }
+  });
+}
+
+// Run when page loads
+window.addEventListener("DOMContentLoaded", loadThemes);
+
+document.getElementById('copyYear').textContent = new Date().getFullYear();
+
+// ==============================================================Calendar
+
+   let currentDate = new Date();
+        let selectedDate = null;
+
+        const monthYear = document.getElementById('monthYear');
+        const daysContainer= document.getElementById('days');
+
+        function renderCalendar() {
+            const year = currentDate.getFullYear();
+            const month = currentDate.getMonth();
+
+            // Month name + year to header
+            const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November","December"];
+
+            monthYear.textContent = `${monthNames[month]} ${year}`;
+
+
+            //  First day ng month at total days
+            const firstDay = new Date(year, month, 1).getDay();
+            const daysInMonth = new Date(year, month + 1, 0).getDate();
+            const daysInPrevMonth = new Date(year, month, 0).getDate();
+
+            daysContainer.innerHTML = ''; 
+
+
+            // Previous month 
+
+            for (let i = firstDay; i > 0;  i--) {
+                const day = document.createElement('div');
+                day.textContent = daysInPrevMonth - i + 1;
+                day.classList.add('other-month');
+                daysContainer.appendChild(day);
+            }
+
+            // current month days
+            const today = new Date();
+            for(let i = 1; i <= daysInMonth; i++) {
+                const day = document.createElement('div');
+                day.textContent = i;
+
+                // Highlight today
+                if (i === today.getDate() && month === today.getMonth() && year === today.getFullYear()) {
+                    day.classList.add('today');
+                }
+
+                // Click to select date
+                day.addEventListener('click', () => {
+                    selectedDate = new Date(year, month, i);
+                    document.querySelectorAll(' .days div').forEach(d => d.classList.remove('selected'));
+                    day.classList.add('selected');
+                    alert(`Selected: ${selectedDate.toDateString()}`);
+                });
+                daysContainer.appendChild(day);
+            }
+
+            // Next month na days para mapuno 6 rows
+            const totalCells = firstDay + daysInMonth;
+            const nextDays = totalCells > 35 ? 42 - totalCells : 35 - totalCells;
+
+            for (let i = 1; i <= nextDays; i++) {
+                const day = document.createElement('div');
+                day.textContent = 1;
+                day.classList.add('other-month');
+                daysContainer.appendChild(day);
+            }
+        }
+
+        // Next month
+        document.getElementById('nextBtn').addEventListener('click', () => {
+            currentDate.setMonth(currentDate.getMonth() + 1);
+            renderCalendar();
+        });
+
+        // Previous month
+        document.getElementById('prevBtn').addEventListener('click', () => {
+            currentDate.setMonth(currentDate.getMonth() - 1);
+            renderCalendar();
+        });
+
+        // Initial render
+        renderCalendar();
+
+
+    </script>
+    <!--   Modal End Here -->
+       <script src="../components/scriptA.js"></script>
+       <script src="../components/scriptB.js"></script>
+   
+    
+</body>
+</html>

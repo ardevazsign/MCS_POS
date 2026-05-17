@@ -1,0 +1,239 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>📒 Notes</title>
+    <link rel="stylesheet" href="../css/style.css" />
+    <style>
+      .notesSection {
+        margin-top: 50px;
+      }
+      .container {
+        max-width: 800px;
+        margin: auto;
+      }
+
+      h1 {
+        text-align: center;
+        margin-bottom: 20px;
+      }
+
+      .inputBox {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        background: white;
+        padding: 20px;
+        border-radius: 10px;
+        margin-bottom: 20px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      }
+
+      input,
+      textarea {
+        width: 100%;
+        padding: 12px;
+        margin-bottom: 10px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+      }
+
+      textarea {
+        height: 150px;
+        resize: none;
+      }
+
+      button {
+        padding: 12px 20px;
+        border: none;
+        background: green;
+        color: white;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+
+      button:hover {
+        opacity: 0.9;
+      }
+
+      .noteCard {
+        background: white;
+        padding: 20px;
+        border-radius: 10px;
+        margin-bottom: 15px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      }
+
+      .noteCard h2 {
+        margin-bottom: 10px;
+      }
+
+      .noteCard p {
+        margin-bottom: 10px;
+        white-space: pre-wrap;
+      }
+
+      .noteCard small {
+        display: block;
+        margin-bottom: 15px;
+        color: gray;
+      }
+
+      .deleteBtn {
+        background: red;
+      }
+    </style>
+  </head>
+  <body>
+    <header class="main-header">
+      <nav class="nav-menu">
+        <span class="logo"><a href="#">✳️ ArdevazSign ❇️</a></span>
+        <ul class="head-list-holder">
+          <li class="headList"><a href="../index.html">🏠</a></li>
+          <li class="headList"><a href="salesHistory.html">📜</a></li>
+          <li class="headList"><a href="salesList.html">📒</a></li>
+          <li class="headList"><a href="salesViewer.html">📚</a></li>
+        </ul>
+        <ul class="head-list-holder">
+          <!-- <li class="headList"><button onclick="showModal()">⚙️</button></li> -->
+          <li class="headList"><a href="../login.html">👤</a></li>
+          <li class="headList">
+            <a href="./cashTracker.html">💴</a>
+          </li>
+          <!-- <li class="headList"><button onclick="openCalendar()">📆</button></li> -->
+          <li class="headList">🗂️📝</li>
+        </ul>
+      </nav>
+    </header>
+    <section class="notesSection">
+      <div class="container">
+        <h1>My Notes App</h1>
+
+        <!-- INPUT AREA -->
+        <div class="inputBox">
+          <input type="text" id="title" placeholder="Enter Note Title" />
+
+          <textarea id="note" placeholder="Write your notes here..."></textarea>
+
+          <button onclick="addNote()">Save Note</button>
+        </div>
+
+        <!-- NOTES LIST -->
+        <div id="notesContainer"></div>
+      </div>
+    </section>
+    <footer>
+      <span class="footer-logo">
+        <a href="#">ArdevazSign'2026 </a>
+      </span>
+      <ul class="footer-menu">
+        <!-- <li><a href="#">💶</a></li>
+        <li><a href="#">📱</a></li> -->
+      </ul>
+      <p>
+        &copy; <span id="copyYear"> </span> ArdevazSign. All rights reserved.
+      </p>
+      <ul>
+        <!-- <li><button onclick="openCalendar()">📆</button></li> -->
+        <!-- <li>👤</li>
+        <li>♻️</li> -->
+      </ul>
+    </footer>
+    <script>
+      // LOAD NOTES FROM LOCAL STORAGE
+      let notes = JSON.parse(localStorage.getItem('notes')) || [];
+
+      // SAVE NOTES
+      function saveNotes() {
+        localStorage.setItem('notes', JSON.stringify(notes));
+      }
+
+      // ADD NOTE
+      function addNote() {
+        const title = document.getElementById('title').value;
+
+        const note = document.getElementById('note').value;
+
+        // VALIDATION
+        if (!title || !note) {
+          alert('Please complete all fields');
+          return;
+        }
+
+        // CREATE NOTE OBJECT
+        const newNote = {
+          id: Date.now(),
+          title: title,
+          note: note,
+          date: new Date().toLocaleString(),
+        };
+
+        // PUSH TO ARRAY
+        notes.push(newNote);
+
+        // SAVE TO LOCAL STORAGE
+        saveNotes();
+
+        // RENDER NOTES
+        renderNotes();
+
+        // CLEAR INPUT
+        document.getElementById('title').value = '';
+        document.getElementById('note').value = '';
+      }
+
+      // DISPLAY NOTES
+      function renderNotes() {
+        const notesContainer = document.getElementById('notesContainer');
+
+        notesContainer.innerHTML = '';
+
+        // REVERSE TO SHOW LATEST FIRST
+        const reverseNotes = [...notes].reverse();
+
+        reverseNotes.forEach((item) => {
+          notesContainer.innerHTML += `
+
+      <div class="noteCard">
+
+        <h2>${item.title}</h2>
+
+        <p>${item.note}</p>
+
+        <small>
+          ${item.date}
+        </small>
+
+        <button
+          class="deleteBtn"
+          onclick="deleteNote(${item.id})"
+        >
+          Delete
+        </button>
+
+      </div>
+
+    `;
+        });
+      }
+
+      // DELETE NOTE
+      function deleteNote(id) {
+        const confirmDelete = confirm('Delete this note?');
+
+        if (!confirmDelete) return;
+
+        notes = notes.filter((item) => item.id !== id);
+
+        saveNotes();
+
+        renderNotes();
+      }
+
+      // INITIAL LOAD
+      renderNotes();
+    </script>
+  </body>
+</html>

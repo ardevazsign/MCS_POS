@@ -1,0 +1,558 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+a {
+  text-decoration: none;
+}
+ul li {
+  list-style: none;
+}
+ul {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  column-gap: 10px;
+}
+.logo a{
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-size: 20px;
+  font-weight:700 ;
+}
+.main-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 101;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 30px;
+  padding: 4px;
+  background-color: chartreuse;
+}
+.head-list-holder {
+  display: flex;
+  column-gap: 40px;
+}
+.headList {
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  background-color: whitesmoke;
+  box-shadow: 2px 2px 20px rgba(0, 0, 0, 0.4);
+  cursor: pointer;
+  border: 1px solid white;
+}
+.headList:active {
+  transform: scale(0.8);
+  box-shadow: 15px 15px 15px rgba(0, 0, 0, 0.8);
+}
+.headList:hover {
+  background-color: gray;
+  border: 1px solid white;
+}
+.nav-menu {
+  column-gap: 100px;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+.dailyListHistory {
+  margin-top: 40px;
+}
+.history-section {
+  position: relative;
+  margin-top: 50px;
+  padding: 10px;
+}
+.section-one {
+  position: relative;
+  margin-top: 35px;
+}
+.totalDisplay {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: left;
+}
+.main-input {
+  font-size: 20px;
+  padding: 0px 10px;
+  border-radius: 4px;
+  border: none;
+  box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.5);
+  margin-top: 2px;
+  width: 370px;
+  height: 50px;
+  margin-bottom: 2px;
+  transition: 0.3s;
+}
+.main-input.dark {
+  background: black;
+  color: white;
+  border-color: #555;
+}
+/* ------- Display Pannel ---------- */
+.bottomBtn{
+  margin-top: 6px;
+}
+.firstRowDisplay {
+  margin-top: 8px;
+  display: flex;
+  column-gap: 4px;
+}
+.secondRow {
+  display: flex;
+  column-gap: 4px;
+  margin-bottom: 2px;
+}
+.saved-value {
+  font-weight: 700;
+  margin-right: 120px;
+}
+.saved-time {
+  font-weight: 600;
+  color: blue;
+  font-size: 12px;
+}
+.savedDisplay {
+  overflow-x: hidden;
+  padding: 5px 10px;
+  font-size: 16px;
+  font-weight: 700;
+}
+/* --------------------------------- */
+.product-holder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding: 0 80px;
+}
+.product {
+  background-color: aqua;
+  border-radius: 6px;
+  width: 80px;
+  height: 80px;
+  box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.5);
+  cursor: pointer;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.product:hover {
+  background-color: gray;
+}
+.product:active {
+  transform: scale(0.95);
+  background: chartreuse;
+  box-shadow: 15px 15px 15px rgba(0, 0, 0, 0.8);
+}
+.productCal {
+  background-color: rgb(8, 236, 171);
+  border-radius: 6px;
+  width: 80px;
+  height: 80px;
+  box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.5);
+  cursor: pointer;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.productCal:hover {
+  background-color: gray;
+}
+.productCal:active {
+  transform: scale(0.95);
+  background: chartreuse;
+  box-shadow: 15px 15px 15px rgba(0, 0, 0, 0.8);
+}
+button {
+  background-color: transparent;
+  border: none;
+  font-size: 25px;
+  font-weight: 600;
+}
+h1,
+h3 {
+  text-align: center;
+}
+h4 {
+  font-size: 40px;
+  font-weight: 600;
+}
+.section-one {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: whitesmoke;
+  padding-bottom: 20px;
+}
+.saveBtn {
+  border-radius: 4px;
+  color: white;
+  background-color: blue;
+  padding: 10px;
+  width: 320px;
+  margin: 0 20px;
+  box-shadow: 2px 2px 12px rgba(0, 0, 0, 0.8);
+}
+.saveBtn:hover {
+  background-color: rgb(30, 255, 0);
+  box-shadow: 6px 6px 10px rgba(0, 0, 0, 0.8);
+}
+.saveBtn:active {
+  color: chartreuse;
+  border: 1px solid chartreuse;
+  transform: scale(0.99);
+  background: gray;
+  box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.8);
+}
+.onethao {
+  color: white;
+  background-color: rgb(84, 22, 231);
+}
+.onethao:hover {
+  background-color: green;
+}
+.onethao:active {
+  transform: scale(0.95);
+  background: chartreuse;
+  box-shadow: 15px 15px 15px rgba(0, 0, 0, 0.8);
+}
+#clock {
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  column-gap: 20px;
+}
+/* --- Sales History HTML --- */
+.history-section {
+  margin-top: 20px;
+}
+.history-title {
+  border: 2px solid white;
+  padding: 4px 0;
+  background-color: #555;
+  color: white;
+  margin: 10px 0;
+  text-align: center;
+  box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.4);
+}
+.history-title2 {
+  width: 94%;
+  border: 2px solid white;
+  padding: 4px 0;
+  background-color: #555;
+  color: white;
+  margin: 10px 0;
+  text-align: center;
+  box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.4);
+}
+/* --- Total Amount CSS*/
+.title-holder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.holder-input {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.total-amount {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 4px 10px;
+  text-align: center;
+  font-size: 20px;
+  font-weight: 700;
+}
+.history-holder {
+  background-color: gainsboro;
+  width: 100vw;
+  height: 100vh;
+}
+.history-list {
+  background-color: #e7e5e5;
+  gap: 4px;
+  margin: 0;
+  padding: 20px;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+.item-holder {
+  flex-shrink: 0;
+  display: inline-flex;
+  height: 100%;
+  width: 400px;
+  background-color: rgb(0, 0, 0);
+  column-gap: 10px;
+  margin-bottom: 2px;
+  padding: 5px 10px 5px 20px;
+}
+.value {
+  width: 100px;
+  color: whitesmoke;
+  font-size: 18px;
+  font-weight: 700;
+}
+.time {
+  font-size: 14px;
+  width: 200px;
+  color: chartreuse;
+  display: flex;
+  flex-direction: row;
+}
+.deleteBtn {
+  cursor: pointer;
+  font-size: 16px;
+  border-radius: 4px;
+  width: 100px;
+  background-color: white;
+}
+.deleteBtn:hover {
+  background-color: red;
+  color: white;
+}
+.empty {
+  background-color: #dc3545;
+  font-size: 40px;
+  color: white;
+  text-align: center;
+  padding: 20px;
+}
+.peso {
+  color: yellow;
+}
+/* --- For Modal ------- */
+.deleteModal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  justify-content: center;
+  align-items: center;
+}
+.modalContent {
+  background-color: #333;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+}
+.modalBtn {
+  /* background-color: #6c757d; */
+  background: #dc3545;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  margin: 5px;
+}
+.historyIcon {
+  text-decoration: none;
+}
+/* ----- For Daily Summary Data  ----- */
+.day-item {
+  width: 480px;
+  gap: 2px;
+  padding: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.dayItemHolder {
+  border: .5px solid rgb(243, 235, 235);
+  padding: 4px 2px;
+  background-color: #f1eaeb;
+  display: flex;
+  column-gap: 2px;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.5);
+}
+.date {
+  border: 1px solid white;
+  padding: 4px 0;
+  color: aliceblue;
+  background: #333;
+  width: 160px;
+  font-size: 16px;
+  font-weight: 600;
+  text-align: center;
+}
+.count {
+  border: 1px solid white;
+  text-align: center;
+  background-color: rgb(169, 10, 237);
+  color: white;
+  width: 150px;
+  font-size: 18px;
+  font-weight: 600;
+  padding: 2px 0;
+}
+.amount {
+  padding: 4px 2px;
+  border: 4px solid white;
+  background-color: #007bff;
+  color: white;
+  text-align: center;
+  width: 120px;
+  font-size: 18px;
+  font-weight: 600;
+  box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.5);
+}
+/* --- Setting / Modal  Dark & Light Mode --- */
+.setting-container {
+  padding: 10px;
+  display: none;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  background: rgba(0, 0, 0, 0.4);
+}
+.setting-content {
+  border-radius: 10px;
+  padding: 40px;
+  margin: 20px;
+  background-color: #ffffff;
+  width: 150px;
+  height: 350px;
+  position: absolute;
+  top: 5%;
+  right: 4%;
+  box-shadow: 4px 4px 20px rgba(252, 252, 252, 0.5);
+}
+.setting-holder {
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  row-gap: 8px;
+}
+.switch {
+  position: relative;
+  width: 50px;
+  height: 22px;
+}
+.switch .inputSwitch {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+.slider {
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  border: 1px solid #fdfdfd;
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: #9e9595;
+  border-radius: 26px;
+  transition: 0.3s;
+}
+.slider:before {
+  position: absolute;
+  content: '';
+  height: 15px;
+  width: 15px;
+  left: 4px;
+  bottom: 2px;
+  border-radius: 50%;
+  transition: 0.3s;
+  background: white;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+  border: 0.5px solid white;
+}
+.inputSwitch:checked + .slider {
+  background: #0f0;
+}
+.inputSwitch:checked + .slider:before {
+  transform: translateX(24px);
+}
+.close {
+  cursor: pointer;
+  border: 0.5px solid rgb(194, 190, 190);
+  color: white;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 24px;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background-color: #007bff;
+  position: relative;
+  float: right;
+  top: -4%;
+  right: -10%;
+  box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.5);
+}
+.close:hover {
+  color: chartreuse;
+  background-color: #6c6262;
+}
+.switchTitle {
+  font-size: 20px;
+  font-weight: 600;
+  text-align: center;
+}
+.labelSwitch {
+  text-align: center;
+  font-weight: 600;
+  font-size: 12px;
+}
+/* .display {
+  background: black;
+  color: black;
+}
+.display.dark {
+  color: white;
+  background: black;
+} */
+/* FOOTER */
+footer {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  background-color: chartreuse;
+  display: flex;
+  justify-content: center;
+  column-gap: 20px;
+  align-items: center;
+  padding: 5px 0;
+}
+.footer-logo {
+  margin-right: 20px;
+  font-size: 20px;
+  font-weight: 600;
+  font-family: sans-serif;
+}
+.footer-menu {
+  display: flex;
+  column-gap: 20px;
+}
+
+@media screen and (min-width: 1440px) {
+  .product-holder {
+    /* gap: 20px; */
+    padding: 0 350px;
+  }
+}

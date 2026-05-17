@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cash Tracker</title>
+    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="../css/update.css" />
+  </head>
+  <body>
+    <header class="main-header">
+      <nav class="nav-menu">
+        <span class="logo"><a href="#">✳️ ArdevazSign ❇️</a></span>
+        <ul class="head-list-holder">
+          <li class="headList"><a href="../index.html">🏠</a></li>
+          <li class="headList"><a href="salesHistory.html">📜</a></li>
+          <li class="headList"><a href="salesList.html">📒</a></li>
+          <li class="headList"><a href="salesViewer.html">📚</a></li>
+        </ul>
+        <ul class="head-list-holder">
+          <!-- <li class="headList">⚙️</li> -->
+          <li class="headList"><a href="../login.html">👤</a></li>
+          <li class="headList">💴</li>
+          <!-- <li class="headList">🗓️</li> -->
+          <li class="headList"><a href="notes.html">🗂️📒</a></li>
+        </ul>
+      </nav>
+    </header>
+    <section class="cashTracker-container">
+      <h1>POS Cash Management System</h1>
+
+      <!-- SUMMARY -->
+      <div class="summary">
+        <div class="card">
+          <h3>Total Sales</h3>
+          <p id="salesDisplay">₱0.00</p>
+        </div>
+
+        <div class="card redCard">
+          <h3>Total Expenses</h3>
+          <p id="expenseDisplay">₱0.00</p>
+        </div>
+
+        <div class="card blueCard">
+          <h3>Total Additional Fund</h3>
+          <p id="fundDisplay">₱0.00</p>
+        </div>
+
+        <div class="card greenCard">
+          <h3>Available Cash</h3>
+          <p id="cashDisplay">₱0.00</p>
+        </div>
+      </div>
+
+      <!-- ADD SALES -->
+      <div class="box">
+        <h2>Add Sales</h2>
+
+        <input
+          type="text"
+          id="salesDescription"
+          placeholder="Sales Description"
+        />
+
+        <input type="number" id="salesAmount" placeholder="Sales Amount" />
+
+        <button onclick="addSales()">Add Sales</button>
+      </div>
+
+      <!-- EXPENSE PAGE -->
+      <div class="box">
+        <h2>Add Expense</h2>
+
+        <input type="text" id="expenseReason" placeholder="Reason of Expense" />
+
+        <input type="number" id="expenseAmount" placeholder="Expense Amount" />
+
+        <button class="redBtn" onclick="addExpense()">Add Expense</button>
+      </div>
+
+      <!-- ADD FUND -->
+      <div class="box">
+        <h2>Add Additional Fund</h2>
+
+        <input type="text" id="fundSource" placeholder="Where Fund Came From" />
+
+        <input type="number" id="fundAmount" placeholder="Fund Amount" />
+
+        <button class="blueBtn" onclick="addFund()">Add Fund</button>
+      </div>
+
+      <!-- EXPENSE LIST -->
+      <div class="listContainer">
+        <div class="listBox">
+          <h2>Expense Records</h2>
+
+          <div id="expenseList"></div>
+        </div>
+
+        <!-- FUND LIST -->
+        <div class="listBox">
+          <h2>Additional Fund Records</h2>
+
+          <div id="fundList"></div>
+        </div>
+        <div class="listBox">
+          <h2>Sales List</h2>
+          <div id="salesList"></div>
+        </div>
+      </div>
+    </section>
+    <footer>
+      <span class="footer-logo">
+        <a href="#">ArdevazSign'2026 </a>
+      </span>
+      <ul class="footer-menu">
+        <!-- <li><a href="#">💶</a></li>
+        <li><a href="#">📱</a></li> -->
+      </ul>
+      <p>
+        &copy; <span id="copyYear"> </span> ArdevazSign. All rights reserved.
+      </p>
+      <ul>
+        <!-- <li>📆</li>
+        <li>👤</li>
+        <li>♻️</li> -->
+      </ul>
+    </footer>
+    <script src="../components/update.js"></script>
+  </body>
+</html>
