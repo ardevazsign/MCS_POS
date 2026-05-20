@@ -14,10 +14,10 @@ ul {
   justify-content: center;
   column-gap: 10px;
 }
-.logo a{
+.logo a {
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   font-size: 20px;
-  font-weight:700 ;
+  font-weight: 700;
 }
 .main-header {
   display: flex;
@@ -96,7 +96,7 @@ ul {
   border-color: #555;
 }
 /* ------- Display Pannel ---------- */
-.bottomBtn{
+.bottomBtn {
   margin-top: 6px;
 }
 .firstRowDisplay {
@@ -373,7 +373,7 @@ h4 {
   justify-content: center;
 }
 .dayItemHolder {
-  border: .5px solid rgb(243, 235, 235);
+  border: 0.5px solid rgb(243, 235, 235);
   padding: 4px 2px;
   background-color: #f1eaeb;
   display: flex;

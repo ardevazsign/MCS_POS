@@ -1,0 +1,391 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Delivery Tracker</title>
+    <link rel="stylesheet" href="../css/style.css" />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: Arial;
+        background: #f5f5f5;
+        /* padding: 20px; */
+      }
+      .section-container {
+        margin-top: 50px;
+        display: flex;
+      }
+
+      .container {
+        margin-top: 20px;
+        max-width: 1000px;
+        margin: auto;
+        background: white;
+        padding: 20px;
+        border-radius: 10px;
+      }
+
+      h1,
+      h2 {
+        text-align: center;
+        margin-bottom: 15px;
+      }
+      .box {
+        background: #fafafa;
+        border: 1px solid #ddd;
+        border-radius: 10px;
+        padding: 20px;
+        margin-top: 20px;
+      }
+
+      .input-group {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+
+      input {
+        flex: 1;
+        min-width: 200px;
+        padding: 10px;
+        font-size: 16px;
+      }
+      button {
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        background: #007bff;
+        color: white;
+      }
+
+      button:hover {
+        background: #0056b3;
+      }
+
+      .delete-btn {
+        background: red;
+      }
+
+      .record {
+        background: white;
+        border: 1px solid #ddd;
+        border-radius: 10px;
+        padding: 15px;
+        margin-top: 10px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      .summary {
+        margin-top: 20px;
+        background: #f0f0f0;
+        padding: 20px;
+        border-radius: 10px;
+      }
+
+      .summary h3 {
+        margin: 10px 0;
+      }
+
+      .green {
+        color: green;
+      }
+
+      .red {
+        color: red;
+      }
+    </style>
+  </head>
+  <body>
+    <header class="main-header">
+      <nav class="nav-menu">
+        <span class="logo"><a href="#">✳️ ArdevazSign ❇️</a></span>
+        <ul class="head-list-holder">
+          <li class="headList"><a href="../index.html">🏠</a></li>
+          <li class="headList"><a href="./salesHistory.html">📜</a></li>
+          <li class="headList"><a href="./salesList.html">📒</a></li>
+          <li class="headList"><a href="./salesViewer.html">📚</a></li>
+        </ul>
+        <ul class="head-list-holder">
+          <!-- <li class="headList"><button onclick="showModal()">⚙️</button></li> -->
+          <li class="headList"><a href="../login.html">👤</a></li>
+          <li class="headList">
+            <a href="./cashTracker.html">💴</a>
+          </li>
+          <!-- <li class="headList"><button onclick="openCalendar()">📆</button></li> -->
+          <li class="headList"><a href="./notes.html">📒</a></li>
+          <li class="headList"><a href="#">🗂️</a></li>
+        </ul>
+      </nav>
+    </header>
+    <div class="section-container">
+      <div class="container">
+        <h1>Delivery Credit Tracker</h1>
+
+        <div class="box">
+          <h2>Add Delivery</h2>
+
+          <div class="input-group">
+            <input type="text" id="supplierName" placeholder="Supplier Name" />
+
+            <input
+              type="number"
+              id="deliveryAmount"
+              placeholder="Delivery Amount"
+            />
+
+            <button onclick="addDelivery()">Add Delivery</button>
+          </div>
+        </div>
+
+        <div class="box">
+          <h2>Add Payment</h2>
+
+          <div class="input-group">
+            <input type="text" id="deliveryId" placeholder="Delivery ID" />
+
+            <input
+              type="number"
+              id="paymentAmount"
+              placeholder="Payment Amount"
+            />
+
+            <button onclick="addPayment()">Add Payment</button>
+          </div>
+        </div>
+
+        <div class="summary">
+          <h3>Total Deliveries: ₱<span id="totalDeliveries">0.00</span></h3>
+
+          <h3>Total Payments: ₱<span id="totalPayments">0.00</span></h3>
+
+          <h3>Remaining Balance: ₱<span id="remainingBalance">0.00</span></h3>
+        </div>
+
+        <div class="box">
+          <h2>Delivery Records</h2>
+
+          <div id="deliveryList"></div>
+        </div>
+
+        <div class="box">
+          <h2>Payment Records</h2>
+
+          <div id="paymentList"></div>
+        </div>
+      </div>
+    </div>
+    <footer>
+      <span class="footer-logo">
+        <a href="#">ArdevazSign'2026 </a>
+      </span>
+      <!-- <ul class="footer-menu">
+        <li><a href="#">💶</a></li>
+        <li><a href="#">📱</a></li>
+      </ul> -->
+      <p>
+        &copy; <span id="copyYear"> </span> ArdevazSign. All rights reserved.
+      </p>
+      <!-- <ul>
+        <li><button onclick="openCalendar()">📆</button></li>
+        <li>👤</li>
+        <li>♻️</li>
+      </ul> -->
+    </footer>
+    <!-- Script -->
+    <script>
+      let deliveries = JSON.parse(localStorage.getItem('deliveries')) || [];
+      let payments = JSON.parse(localStorage.getItem('payments')) || [];
+
+      function saveData() {
+        localStorage.setItem('deliveries', JSON.stringify(deliveries));
+
+        localStorage.setItem('payments', JSON.stringify(payments));
+      }
+
+      function addDelivery() {
+        const supplier = document.getElementById('supplierName').value.trim();
+
+        const amount = Number(document.getElementById('deliveryAmount').value);
+
+        if (supplier === '' || amount <= 0) {
+          alert('Please complete details');
+          return;
+        }
+
+        const id = 'DR-' + Date.now();
+
+        const newDelivery = {
+          id: id,
+          supplier: supplier,
+          totalAmount: amount,
+          paidAmount: 0,
+          balance: amount,
+        };
+
+        deliveries.push(newDelivery);
+
+        saveData();
+        renderData();
+
+        document.getElementById('supplierName').value = '';
+        document.getElementById('deliveryAmount').value = '';
+      }
+
+      function addPayment() {
+        const deliveryId = document.getElementById('deliveryId').value.trim();
+
+        const paymentAmount = Number(
+          document.getElementById('paymentAmount').value,
+        );
+
+        if (deliveryId === '' || paymentAmount <= 0) {
+          alert('Please complete payment details');
+          return;
+        }
+
+        const delivery = deliveries.find((item) => item.id === deliveryId);
+
+        if (!delivery) {
+          alert('Delivery ID not found');
+          return;
+        }
+
+        if (paymentAmount > delivery.balance) {
+          alert('Payment exceeds balance');
+          return;
+        }
+        delivery.paidAmount += paymentAmount;
+        delivery.balance -= paymentAmount;
+
+        payments.push({
+          deliveryId: delivery.id,
+          supplier: delivery.supplier,
+          amount: paymentAmount,
+        });
+
+        saveData();
+        renderData();
+
+        document.getElementById('deliveryId').value = '';
+        document.getElementById('paymentAmount').value = '';
+      }
+
+      function deleteDelivery(index) {
+        deliveries.splice(index, 1);
+
+        saveData();
+        renderData();
+      }
+
+      function deletePayment(index) {
+        payments.splice(index, 1);
+
+        saveData();
+        renderData();
+      }
+
+      function renderData() {
+        const deliveryList = document.getElementById('deliveryList');
+
+        const paymentList = document.getElementById('paymentList');
+
+        deliveryList.innerHTML = '';
+        paymentList.innerHTML = '';
+
+        let totalDeliveries = 0;
+        let totalPayments = 0;
+        let remainingBalance = 0;
+
+        deliveries.forEach((item, index) => {
+          totalDeliveries += Number(item.totalAmount);
+          remainingBalance += Number(item.balance);
+
+          deliveryList.innerHTML += `
+
+
+          <div class="record">
+
+      <div>
+      <strong>ID:</strong>
+       ${item.id}<br><br>
+
+       <strong>Supplier:</strong>
+       ${item.supplier}<br><br>
+
+      <strong>Total Amount:</strong>
+                                        ₱${item.totalAmount.toFixed(2)}<br><br>
+
+                                        <strong class="green">Paid:</strong>
+                                        ₱${item.paidAmount.toFixed(2)}<br><br>
+
+                                        <strong class="red">Balance:</strong>
+                                        ₱${item.balance.toFixed(2)}
+
+                                      </div>
+
+                                      <button
+                                      class="delete-btn"
+                                      onclick="deleteDelivery(${index})"
+                                      >
+                                      Delete
+                                      </button>
+
+                                    </div>
+
+                                    `;
+        });
+
+        payments.forEach((item, index) => {
+          totalPayments += Number(item.amount);
+
+          paymentList.innerHTML += `
+
+                                    <div class="record">
+
+                                      <div>
+
+                                        <strong>Delivery ID:</strong>
+                                        ${item.deliveryId}<br><br>
+
+                                        <strong>Supplier:</strong>
+                                        ${item.supplier}<br><br>
+
+                                        <strong>Payment:</strong>
+                                        ₱${item.amount.toFixed(2)}
+
+                                      </div>
+
+                                      <button
+                                      class="delete-btn"
+                                      onclick="deletePayment(${index})"
+                                      >
+                                      Delete
+                                      </button>
+
+                                    </div>
+
+                                    `;
+        });
+
+        document.getElementById('totalDeliveries').textContent =
+          totalDeliveries.toFixed(2);
+
+        document.getElementById('totalPayments').textContent =
+          totalPayments.toFixed(2);
+
+        document.getElementById('remainingBalance').textContent =
+          remainingBalance.toFixed(2);
+      }
+
+      renderData();
+    </script>
+  </body>
+</html>
