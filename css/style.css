@@ -115,7 +115,7 @@ ul {
 }
 .saved-time {
   font-weight: 600;
-  color: blue;
+  color: chartreuse;
   font-size: 12px;
 }
 .savedDisplay {
@@ -554,5 +554,72 @@ footer {
   .product-holder {
     /* gap: 20px; */
     padding: 0 350px;
+  }
+}
+
+/* @media screen and (max-width: 480px) {
+
+} */
+
+/* @media screen and (max-width: 768px) {
+} */
+
+@media screen and (max-width: 1024px) {
+  body {
+    overflow-x: hidden;
+  }
+  .product-holder {
+    gap: 15px;
+    padding: 0 60px;
+    margin-top: 5px;
+  }
+  .product {
+    width: 60px;
+    height: 60px;
+  }
+  .productCal {
+    width: 60px;
+    height: 60px;
+  }
+
+  .logo a {
+    display: none;
+  }
+  .headList .buttonShowModal {
+    font-size: 16px;
+  }
+  .headList .buttonOpen {
+    font-size: 16px;
+  }
+  .head-list-holder {
+    column-gap: 10px;
+  }
+  .nav-menu {
+    column-gap: 40px;
+  }
+  .main-input {
+    font-size: 16px;
+    padding: 0px 8px;
+    margin-top: 1px;
+    width: 280px;
+    height: 40px;
+    margin-bottom: 2px;
+    transition: 0.3s;
+  }
+  .firstRowDisplay,
+  .secondRow {
+    border-radius: 4px;
+    background-color: rgb(29, 25, 25);
+  }
+  .saved-value {
+    color: gray;
+    margin-right: 80px;
+  }
+  .saved-time {
+    font-size: 10px;
+  }
+  .saveBtn {
+    font-size: 18px;
+    width: 300px;
   }
 }
